@@ -1,8 +1,6 @@
 package dev.secondsun.controls;
 
 import dev.secondsun.controls.util.DecimalFieldFormatter;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.ObjectBinding;
 import javafx.beans.property.StringProperty;
@@ -13,27 +11,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-import java.io.IOException;
 import java.util.concurrent.Callable;
 
 /**
- * This class controls a XYZField custom component
+ * This class controls a XYField custom component
  * <p>
  * It is used by the camera form for the lookAt, and position.
  * Eventually it will be used by other things.
  */
-public class XYZField extends GridPane {
+public class XYField extends GridPane {
 
-    private ObjectBinding<XYZ> xyzBinding;
+    private ObjectBinding<XY> xyBinding;
 
-    public record XYZ(double x, double y, double z){};
+    public record XY(double x, double y){};
 
-    public ObjectBinding<XYZ> getXYZBinding() {
-        return xyzBinding;
+    public ObjectBinding<XY> getXYBinding() {
+        return xyBinding;
     }
 
-    public XYZ XYZ() {
-        return new XYZ(Double.parseDouble(getX()), Double.parseDouble(getY()), Double.parseDouble(getZ()));
+    public XY XY() {
+        return new XY(Double.parseDouble(getX()), Double.parseDouble(getY()));
     }
 
 
@@ -41,14 +38,12 @@ public class XYZField extends GridPane {
     private TextField x;
     @FXML
     private TextField y;
-    @FXML
-    private TextField z;
 
-    public XYZField() {
+    public XYField() {
 
         try {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "xyzfield.fxml").toURI().toURL());
+                "xyfield.fxml").toURI().toURL());
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -62,18 +57,17 @@ public class XYZField extends GridPane {
     public void initialize() {
         x.setTextFormatter(new DecimalFieldFormatter());
         y.setTextFormatter(new DecimalFieldFormatter());
-        z.setTextFormatter(new DecimalFieldFormatter());
-
-        this.xyzBinding = Bindings.createObjectBinding(new Callable<XYZ>(){
+        
+        this.xyBinding = Bindings.createObjectBinding(new Callable<XY>(){
             @Override
-            public XYZ call() throws Exception {
-                return XYZ();
+            public XY call() throws Exception {
+                return XY();
             }
-        }, zProperty(), yProperty(), xProperty());
+        },  yProperty(), xProperty());
 
-        xyzBinding.addListener(new ChangeListener<XYZ>() {
+        xyBinding.addListener(new ChangeListener<XY>() {
             @Override
-            public void changed(ObservableValue<? extends XYZ> observableValue, XYZ oldValue, XYZ newValue) {
+            public void changed(ObservableValue<? extends XY> observableValue, XY oldValue, XY newValue) {
                 System.out.println(oldValue + " became " + newValue);
             }
         });
@@ -91,14 +85,6 @@ public class XYZField extends GridPane {
         return yProperty().get();
     }
 
-    public void setZ(String value) {
-        zProperty().set(value);
-    }
-
-    public String getZ() {
-        return zProperty().get();
-    }
-
     public void setX(String value) {
         xProperty().set(value);
     }
@@ -108,9 +94,6 @@ public class XYZField extends GridPane {
     }
     public StringProperty yProperty() {
         return y.textProperty();
-    }
-    public StringProperty zProperty() {
-        return z.textProperty();
     }
 
 }

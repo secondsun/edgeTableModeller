@@ -1,5 +1,6 @@
 package dev.secondsun;
 
+import dev.secondsun.controls.XYField;
 import dev.secondsun.controls.XYZField;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
@@ -11,11 +12,19 @@ public class PrimaryController {
     private XYZField cameraLocationXYZ;
 
     @FXML
+    private XYZField cameraLookAtXYZ;
+    @FXML
+    private XYField worldCenter;
+
+    @FXML
+    private XYField fieldOfView;
+
+    @FXML
     TreeView<SceneNode> sceneTreeView;
 
     public void initialize() {
         loadTreeItems("initial 1", "initial 2", "initial 3");
-        System.out.println(cameraLocationXYZ.XYZ());
+        //System.out.println(cameraLocationXYZ.XYZ());
     }
 
     private void loadTreeItems(String... items) {

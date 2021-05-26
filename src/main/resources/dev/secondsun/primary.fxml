@@ -13,6 +13,9 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TreeView?>
 <?import dev.secondsun.controls.XYZField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import dev.secondsun.controls.XYField?>
 <BorderPane fx:controller="dev.secondsun.PrimaryController" xmlns:fx="http://javafx.com/fxml" >
     <top>
         <MenuBar style="-fx-background-color: white">
@@ -44,7 +47,16 @@
                                 <TreeView fx:id="sceneTreeView"></TreeView>
                             </Tab>
                             <Tab text="Camera">
-                                <XYZField fx:id="cameraLocationXYZ" x="0.0" z="1.0" y="2.0"></XYZField>
+                                <VBox>
+                                    <Label text="Location" ></Label>
+                                    <XYZField fx:id="cameraLocationXYZ" x="0.0" z="1.0" y="2.0"></XYZField>
+                                    <Label text="Look At" ></Label>
+                                    <XYZField fx:id="cameraLookAtXYZ" x="0.0" z="1.0" y="2.0"></XYZField>
+                                    <Label text="Field of View" ></Label>
+                                    <XYField fx:id="fieldOfView" x="0.0" y="2.0"></XYField>
+                                    <Label text="World Center" ></Label>
+                                    <XYField fx:id="worldCenter" x="0.0" y="2.0"></XYField>
+                                </VBox>
                             </Tab>
 
                         </tabs>
