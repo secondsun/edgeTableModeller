@@ -20,6 +20,11 @@
             <artifactId>javafx-fxml</artifactId>
             <version>15.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>dev.secondsun</groupId>
+            <artifactId>java-isoengine</artifactId>
+            <version>0.2</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -16,6 +16,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.Label?>
 <?import dev.secondsun.controls.XYField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
 <BorderPane fx:controller="dev.secondsun.PrimaryController" xmlns:fx="http://javafx.com/fxml" >
     <top>
         <MenuBar style="-fx-background-color: white">
@@ -44,7 +46,13 @@
                     <TabPane>
                         <tabs>
                             <Tab text="Scene">
-                                <TreeView fx:id="sceneTreeView"></TreeView>
+                                <VBox>
+                                    <TreeView fx:id="sceneTreeView" ></TreeView>
+                                    <HBox >
+                                        <Button text="Add"></Button>
+                                        <Button text="Delete"></Button>
+                                    </HBox>
+                                </VBox>
                             </Tab>
                             <Tab text="Camera">
                                 <VBox>
