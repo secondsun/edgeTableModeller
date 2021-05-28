@@ -1,12 +1,14 @@
 package dev.secondsun.edgemodeller;
 
-import dev.secondsun.geometry.Model;
+import dev.secondsun.util.BSPTree;
+import dev.secondsun.util.BSPTree.Node;
 import dev.secondsun.util.Plane;
+import javafx.beans.binding.ObjectBinding;
 
 public class SceneNode {
     private String title;
     private Plane splitPane;
-    private Model model;
+    private ObjectBinding<BSPTree> model;
 
     private SceneNode front, behind;
 
@@ -46,17 +48,33 @@ public class SceneNode {
         return this;
     }
 
-    public Model getModel() {
-        return model;
-    }
-
-    public SceneNode setModel(Model model) {
+    public SceneNode setModel(ObjectBinding<BSPTree> model) {
         this.model = model;
         return this;
     }
 
-    public SceneNode(String title) {
-        this.title = title;
+    public SceneNode(Node title) {
+        if (title.partition == null) {
+            this.title = "Model";
+        } else {
+            this.title = "Partition";
+        }
+
+        addFrontChildren(title);
+        addBehindChildren(title);
+
+    }
+
+    private void addBehindChildren(Node title) {
+        if (title.behind != null) {
+            this.behind = new SceneNode(title.front);
+        }
+    }
+
+    private void addFrontChildren(Node title) {
+        if (title.front != null) {
+            this.front = new SceneNode(title.front);
+        }
     }
 
     @Override
