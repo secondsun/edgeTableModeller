@@ -1,7 +1,7 @@
-package dev.secondsun;
+package dev.secondsun.edgemodeller;
 
-import dev.secondsun.controls.XYField;
-import dev.secondsun.controls.XYZField;
+import dev.secondsun.edgemodeller.controls.XYField;
+import dev.secondsun.edgemodeller.controls.XYZField;
 import dev.secondsun.geometry.playfield.Cube;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;

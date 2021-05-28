@@ -1,6 +1,6 @@
-package dev.secondsun.controls;
+package dev.secondsun.edgemodeller.controls;
 
-import dev.secondsun.controls.util.DecimalFieldFormatter;
+import dev.secondsun.edgemodeller.controls.util.DecimalFieldFormatter;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.ObjectBinding;
 import javafx.beans.property.StringProperty;

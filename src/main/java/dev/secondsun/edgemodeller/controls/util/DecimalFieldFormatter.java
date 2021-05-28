@@ -1,4 +1,4 @@
-package dev.secondsun.controls.util;
+package dev.secondsun.edgemodeller.controls.util;
 
 import javafx.scene.control.TextFormatter;
 

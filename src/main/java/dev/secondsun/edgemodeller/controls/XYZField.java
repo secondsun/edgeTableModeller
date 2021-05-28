@@ -1,8 +1,6 @@
-package dev.secondsun.controls;
+package dev.secondsun.edgemodeller.controls;
 
-import dev.secondsun.controls.util.DecimalFieldFormatter;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+import dev.secondsun.edgemodeller.controls.util.DecimalFieldFormatter;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.ObjectBinding;
 import javafx.beans.property.StringProperty;
@@ -13,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-import java.io.IOException;
 import java.util.concurrent.Callable;
 
 /**

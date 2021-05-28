@@ -12,13 +12,13 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TreeView?>
-<?import dev.secondsun.controls.XYZField?>
+<?import dev.secondsun.edgemodeller.controls.XYZField?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.Label?>
-<?import dev.secondsun.controls.XYField?>
+<?import dev.secondsun.edgemodeller.controls.XYField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
-<BorderPane fx:controller="dev.secondsun.PrimaryController" xmlns:fx="http://javafx.com/fxml" >
+<BorderPane fx:controller="dev.secondsun.edgemodeller.PrimaryController" xmlns:fx="http://javafx.com/fxml" >
     <top>
         <MenuBar style="-fx-background-color: white">
             <menus>

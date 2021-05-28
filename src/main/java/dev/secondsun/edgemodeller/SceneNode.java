@@ -1,4 +1,4 @@
-package dev.secondsun;
+package dev.secondsun.edgemodeller;
 
 import dev.secondsun.geometry.Model;
 import dev.secondsun.util.Plane;

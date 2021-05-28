@@ -1,4 +1,4 @@
-package dev.secondsun;
+package dev.secondsun.edgemodeller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
