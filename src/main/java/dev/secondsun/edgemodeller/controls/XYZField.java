@@ -1,8 +1,11 @@
 package dev.secondsun.edgemodeller.controls;
 
 import dev.secondsun.edgemodeller.controls.util.DecimalFieldFormatter;
+import java.util.Properties;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.ObjectBinding;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,12 +24,11 @@ import java.util.concurrent.Callable;
  */
 public class XYZField extends GridPane {
 
-    private ObjectBinding<XYZ> xyzBinding;
-
+    private ObjectProperty<XYZ> xyz = new SimpleObjectProperty<>();
     public record XYZ(double x, double y, double z){};
 
-    public ObjectBinding<XYZ> getXYZBinding() {
-        return xyzBinding;
+    public ObjectProperty<XYZ> XYZProperty() {
+        return xyz;
     }
 
     public XYZ XYZ() {
@@ -61,19 +63,14 @@ public class XYZField extends GridPane {
         y.setTextFormatter(new DecimalFieldFormatter());
         z.setTextFormatter(new DecimalFieldFormatter());
 
-        this.xyzBinding = Bindings.createObjectBinding(new Callable<XYZ>(){
-            @Override
-            public XYZ call() throws Exception {
-                return XYZ();
-            }
-        }, zProperty(), yProperty(), xProperty());
-
-        xyzBinding.addListener(new ChangeListener<XYZ>() {
-            @Override
-            public void changed(ObservableValue<? extends XYZ> observableValue, XYZ oldValue, XYZ newValue) {
-                System.out.println(oldValue + " became " + newValue);
-            }
+        ChangeListener listener = ((observableValue, oldValue, newValue) -> {
+            System.out.println(oldValue + " became " + newValue);
+            xyz.setValue(XYZ());
         });
+
+        xProperty().addListener(listener);
+        yProperty().addListener(listener);
+        zProperty().addListener(listener);
     }
 
     public String getX() {

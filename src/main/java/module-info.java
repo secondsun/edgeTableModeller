@@ -3,5 +3,6 @@ open module dev.secondsun.edgemodeller {
     requires javafx.fxml;
 
     requires dev.secondsun.javaisoengine;
+  requires java.desktop;
 
 }

@@ -3,6 +3,8 @@ package dev.secondsun.edgemodeller.controls;
 import dev.secondsun.edgemodeller.controls.util.DecimalFieldFormatter;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.ObjectBinding;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,13 +23,14 @@ import java.util.concurrent.Callable;
  */
 public class XYField extends GridPane {
 
-    private ObjectBinding<XY> xyBinding;
+  private SimpleObjectProperty<XY> xySimpleObjectProperty = new SimpleObjectProperty<>();
 
-    public record XY(double x, double y){};
+  public ObjectProperty<XY> XYProperty() {
+    return xySimpleObjectProperty;
+  }
 
-    public ObjectBinding<XY> getXYBinding() {
-        return xyBinding;
-    }
+  public record XY(double x, double y){};
+
 
     public XY XY() {
         return new XY(Double.parseDouble(getX()), Double.parseDouble(getY()));
@@ -57,20 +60,15 @@ public class XYField extends GridPane {
     public void initialize() {
         x.setTextFormatter(new DecimalFieldFormatter());
         y.setTextFormatter(new DecimalFieldFormatter());
-        
-        this.xyBinding = Bindings.createObjectBinding(new Callable<XY>(){
-            @Override
-            public XY call() throws Exception {
-                return XY();
-            }
-        },  yProperty(), xProperty());
 
-        xyBinding.addListener(new ChangeListener<XY>() {
-            @Override
-            public void changed(ObservableValue<? extends XY> observableValue, XY oldValue, XY newValue) {
-                System.out.println(oldValue + " became " + newValue);
-            }
-        });
+      ChangeListener listener = ((observableValue, oldValue, newValue) -> {
+        System.out.println(oldValue + " became " + newValue);
+        xySimpleObjectProperty.setValue(XY());
+      });
+
+      xProperty().addListener(listener);
+      yProperty().addListener(listener);
+
     }
 
     public String getX() {
