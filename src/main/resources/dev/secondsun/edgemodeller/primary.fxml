@@ -21,6 +21,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.ScrollPane?>
+<?import dev.secondsun.edgemodeller.controls.ModelPropertiesPanel?>
 <BorderPane fx:controller="dev.secondsun.edgemodeller.PrimaryController" xmlns:fx="http://javafx.com/fxml" >
     <top>
         <MenuBar style="-fx-background-color: white">
@@ -55,18 +56,19 @@
                                         <Button text="Add"></Button>
                                         <Button text="Delete"></Button>
                                     </HBox>
+                                    <ModelPropertiesPanel fx:id="modelProps" prefHeight="200"/>
                                 </VBox>
                             </Tab>
                             <Tab text="Camera">
                                 <VBox>
                                     <Label text="Location" ></Label>
-                                    <XYZField fx:id="cameraLocationXYZ" x="0.0" z="1.0" y="2.0"></XYZField>
+                                    <XYZField fx:id="cameraLocationXYZ" x="60.0" z="10.0" y="20.0"></XYZField>
                                     <Label text="Look At" ></Label>
                                     <XYZField fx:id="cameraLookAtXYZ" x="0.0" z="1.0" y="2.0"></XYZField>
                                     <Label text="Field of View" ></Label>
-                                    <XYField fx:id="fieldOfView" x="0.0" y="2.0"></XYField>
+                                    <XYField fx:id="fieldOfView" x="2.0" y="2.0"></XYField>
                                     <Label text="World Center" ></Label>
-                                    <XYField fx:id="worldCenter" x="0.0" y="2.0"></XYField>
+                                    <XYField fx:id="worldCenter" x="64.0" y="64.0"></XYField>
                                 </VBox>
                             </Tab>
 

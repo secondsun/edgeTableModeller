@@ -1,6 +1,7 @@
 package dev.secondsun.edgemodeller;
 
 
+import dev.secondsun.edgemodeller.controls.ModelPropertiesPanel;
 import dev.secondsun.edgemodeller.controls.XYField;
 import dev.secondsun.edgemodeller.controls.XYField.XY;
 import dev.secondsun.edgemodeller.controls.XYZField;
@@ -17,6 +18,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.ObjectBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.TreeItem;
@@ -50,6 +52,9 @@ public class PrimaryController {
 
   @FXML
   TreeView<SceneNode> sceneTreeView;
+
+  @FXML
+  private ModelPropertiesPanel modelProps;
 
   private Model model = new DormRoom();
   private ScanLineEngine engine = new ScanLineEngine(355, 286, model);
@@ -92,9 +97,24 @@ public class PrimaryController {
     cameraLookAtXYZ.XYZProperty().addListener(listener);
     worldCenter.XYProperty().addListener(listener);
     fieldOfView.XYProperty().addListener(listener);
-
+    listener.changed(null,null,null);
 
     loadTreeItems();
+    sceneTreeView.getSelectionModel().selectedItemProperty().addListener(
+        new ChangeListener<TreeItem<SceneNode>>() {
+          @Override
+          public void changed(ObservableValue<? extends TreeItem<SceneNode>> observable,
+              TreeItem<SceneNode> oldValue, TreeItem<SceneNode> newValue) {
+            var value = newValue.getValue();
+            if (value.getSplitPane() != null) {
+              modelProps.partitionPropertyProperty().set(value.getSplitPane());
+            } else {
+              modelProps.modelPropertyProperty().set(value.getModel());
+            }
+
+          }
+        });
+
 
 
   }
