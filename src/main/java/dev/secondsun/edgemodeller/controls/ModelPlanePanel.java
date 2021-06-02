@@ -1,22 +1,25 @@
 package dev.secondsun.edgemodeller.controls;
 
 import dev.secondsun.geometry.Model;
+import dev.secondsun.geometry.Triangle;
 import dev.secondsun.util.Plane;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 /**
- * This control shows details for either a Model or a Partition despite its name.
+ * This control shows details for either a Model or a Plane partition.
  */
-public class ModelPropertiesPanel extends GridPane implements Initializable {
+public class ModelPlanePanel extends GridPane implements Initializable {
 
   private SimpleObjectProperty<Plane> partitionProperty = new SimpleObjectProperty<>();
   private SimpleObjectProperty<Model> modelProperty = new SimpleObjectProperty<>();
@@ -24,9 +27,9 @@ public class ModelPropertiesPanel extends GridPane implements Initializable {
   @FXML private VBox emptyBox;
   @FXML private VBox partitionBox;
   @FXML private VBox modelBox;
+  @FXML private ListView<Triangle> triangles;
 
-
-  public ModelPropertiesPanel() {
+  public ModelPlanePanel() {
 
     try {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
@@ -41,6 +44,9 @@ public class ModelPropertiesPanel extends GridPane implements Initializable {
   }
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    triangles.setCellFactory(listView -> new TriangleListCell());
+
     partitionProperty.addListener((observable, oldValue, newValue) -> {
         emptyBox.setVisible(false);
       modelBox.setVisible(false);
@@ -50,6 +56,9 @@ public class ModelPropertiesPanel extends GridPane implements Initializable {
     modelProperty.addListener((observable, oldValue, newValue) -> {
       emptyBox.setVisible(false);
       modelBox.setVisible(true);
+      triangles.setItems(FXCollections.observableList(newValue.getTriangles()));
+
+
       partitionBox.setVisible(false);
     });
 

@@ -1,7 +1,8 @@
 package dev.secondsun.edgemodeller;
 
 
-import dev.secondsun.edgemodeller.controls.ModelPropertiesPanel;
+import dev.secondsun.edgemodeller.controls.ModelPlanePanel;
+import dev.secondsun.edgemodeller.controls.TriangleListCell;
 import dev.secondsun.edgemodeller.controls.XYField;
 import dev.secondsun.edgemodeller.controls.XYField.XY;
 import dev.secondsun.edgemodeller.controls.XYZField;
@@ -13,14 +14,13 @@ import dev.secondsun.geometry.Vertex2D;
 import dev.secondsun.geometry.playfield.DormRoom;
 import dev.secondsun.util.BSPTree;
 import java.awt.image.BufferedImage;
-import javafx.beans.Observable;
-import javafx.beans.binding.Bindings;
+
 import javafx.beans.binding.ObjectBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
@@ -54,7 +54,8 @@ public class PrimaryController {
   TreeView<SceneNode> sceneTreeView;
 
   @FXML
-  private ModelPropertiesPanel modelProps;
+  private ModelPlanePanel modelProps;
+
 
   private Model model = new DormRoom();
   private ScanLineEngine engine = new ScanLineEngine(355, 286, model);
@@ -63,6 +64,7 @@ public class PrimaryController {
   private ObjectBinding<BSPTree> worldModelBinding;
 
   public void initialize() {
+
 
     this.worldModelBinding = new ObjectBinding<BSPTree>() {
       @Override

@@ -32,7 +32,12 @@ public class XYZField extends GridPane {
     }
 
     public XYZ XYZ() {
-        return new XYZ(Double.parseDouble(getX()), Double.parseDouble(getY()), Double.parseDouble(getZ()));
+        try {
+            return new XYZ(Double.parseDouble(getX()), Double.parseDouble(getY()), Double.parseDouble(getZ()));
+        } catch (Exception e) {
+            System.out.println(e);
+            return new XYZ(0,0,0);
+        }
     }
 
 

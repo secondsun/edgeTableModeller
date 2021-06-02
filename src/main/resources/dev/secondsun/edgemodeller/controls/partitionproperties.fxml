@@ -9,6 +9,7 @@
 
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ListView?>
 <fx:root type="javafx.scene.layout.GridPane" hgap="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
 
   <VBox fx:id="emptyBox"  alignment="CENTER">
@@ -18,7 +19,8 @@
     <Text>Partition Selected</Text>
   </VBox>
   <VBox fx:id="modelBox" visible="false"  alignment="CENTER">
-    <Text>Model Selected</Text>
+    <ListView fx:id="triangles" ></ListView>
+
   </VBox>
 
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import dev.secondsun.edgemodeller.controls.XYZField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import dev.secondsun.edgemodeller.controls.XYField?>
+<?import javafx.scene.control.Button?>
+<fx:root type="javafx.scene.layout.VBox" fx:id="root" style="-fx-padding: 8 4;" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
+    <HBox><Label>Vertex 1:</Label><XYZField fx:id="vertex1"/></HBox>
+    <HBox><Label>Vertex 2:</Label><XYZField fx:id="vertex2"/></HBox>
+    <HBox><Label>Vertex 3:</Label><XYZField fx:id="vertex3"/></HBox>
+    <HBox><Label> Color  :</Label><TextField fx:id="color"/></HBox>
+    <HBox><Label>Texture :</Label><TextField fx:id="textureId"/></HBox>
+    <HBox><Label>Origin  :</Label><XYField fx:id="textureOrigin"/></HBox>
+    <HBox><Label>UV Coord:</Label><XYField fx:id="textureUV"/></HBox>
+    <Button fx:id="update">Update</Button>
+</fx:root>

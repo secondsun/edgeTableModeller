@@ -33,7 +33,12 @@ public class XYField extends GridPane {
 
 
     public XY XY() {
-        return new XY(Double.parseDouble(getX()), Double.parseDouble(getY()));
+        try {
+            return new XY(Double.parseDouble(getX()), Double.parseDouble(getY()));
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return new XY(0,0);
+        }
     }
 
 

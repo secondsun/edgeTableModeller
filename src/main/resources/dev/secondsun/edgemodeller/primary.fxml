@@ -21,7 +21,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.ScrollPane?>
-<?import dev.secondsun.edgemodeller.controls.ModelPropertiesPanel?>
+<?import dev.secondsun.edgemodeller.controls.ModelPlanePanel?>
 <BorderPane fx:controller="dev.secondsun.edgemodeller.PrimaryController" xmlns:fx="http://javafx.com/fxml" >
     <top>
         <MenuBar style="-fx-background-color: white">
@@ -47,7 +47,7 @@
         <SplitPane>
             <items>
                 <VBox style="-fx-background-color: green">
-                    <TabPane>
+                    <TabPane tabClosingPolicy="UNAVAILABLE">
                         <tabs>
                             <Tab text="Scene">
                                 <VBox>
@@ -56,7 +56,7 @@
                                         <Button text="Add"></Button>
                                         <Button text="Delete"></Button>
                                     </HBox>
-                                    <ModelPropertiesPanel fx:id="modelProps" prefHeight="200"/>
+                                    <ModelPlanePanel fx:id="modelProps" prefHeight="200"/>
                                 </VBox>
                             </Tab>
                             <Tab text="Camera">
@@ -76,13 +76,11 @@
                     </TabPane>
                 </VBox>
 
-                <ScrollPane fx:id="img_pane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <ScrollPane fx:id="img_pane" prefHeight="286.0" prefWidth="355.0" BorderPane.alignment="CENTER">
                     <content>
                         <Canvas  fx:id="renderView" height="286.0" width="355.0" />
                     </content>
                 </ScrollPane>
-
-
             </items>
         </SplitPane>
     </center>
