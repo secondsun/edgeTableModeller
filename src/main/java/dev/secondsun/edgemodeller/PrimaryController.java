@@ -7,6 +7,7 @@ import dev.secondsun.edgemodeller.controls.XYField;
 import dev.secondsun.edgemodeller.controls.XYField.XY;
 import dev.secondsun.edgemodeller.controls.XYZField;
 import dev.secondsun.edgemodeller.controls.XYZField.XYZ;
+import dev.secondsun.edgemodeller.vo.Project;
 import dev.secondsun.game.ScanLineEngine;
 import dev.secondsun.geometry.Model;
 import dev.secondsun.geometry.Vertex;
@@ -29,6 +30,8 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 
 public class PrimaryController {
+
+  private Project project = new Project();
 
   public record Camera(XYZ location, XYZ lookAt, XY worldCenter, XY fieldOfView) {
 
@@ -57,8 +60,8 @@ public class PrimaryController {
   private ModelPlanePanel modelProps;
 
 
-  private Model model = new DormRoom();
-  private ScanLineEngine engine = new ScanLineEngine(355, 286, model);
+  private Model model = new DormRoom(project.getResources());
+  private ScanLineEngine engine = new ScanLineEngine(355, 286, model, project.getResources());
 
   private BSPTree worldModel = model.getBSPTree();
   private ObjectBinding<BSPTree> worldModelBinding;
@@ -90,7 +93,7 @@ public class PrimaryController {
           var image = engine.draw(tris);
           System.out.println("redraw");
           renderView.getGraphicsContext2D().drawImage(toFXImage(image), 0, 0);
-          model = new DormRoom();
+          model = new DormRoom(project.getResources());
         }
 
     );
