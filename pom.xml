@@ -23,13 +23,19 @@
         <dependency>
             <groupId>dev.secondsun</groupId>
             <artifactId>java-isoengine</artifactId>
-            <version>0.3</version>
+            <version>0.4</version>
         </dependency>
     
       <dependency>
         <groupId>com.google.code.gson</groupId>
         <artifactId>gson</artifactId>
         <version>2.9.0</version>
+      </dependency>
+    
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.5.1</version>
       </dependency>
     </dependencies>
     <build>
