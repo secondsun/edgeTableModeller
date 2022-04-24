@@ -109,5 +109,9 @@ public final class Project implements Externalizable {
         return "Project [resources=" + resources + ", tree=" + tree + "]";
     }
 
+    public BSPTree getTree() {
+        return tree;
+    }
+
 
 }

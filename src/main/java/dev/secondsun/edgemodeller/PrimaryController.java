@@ -21,7 +21,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
@@ -33,11 +32,7 @@ public class PrimaryController {
 
   private Project project = new Project();
 
-  public record Camera(XYZ location, XYZ lookAt, XY worldCenter, XY fieldOfView) {
-
-  }
-
-  ;
+  public record Camera(XYZ location, XYZ lookAt, XY worldCenter, XY fieldOfView) {};
 
   @FXML
   private Canvas renderView;
@@ -64,20 +59,8 @@ public class PrimaryController {
   private ScanLineEngine engine = new ScanLineEngine(355, 286, model, project.getResources());
 
   private BSPTree worldModel = model.getBSPTree();
-  private ObjectBinding<BSPTree> worldModelBinding;
 
   public void initialize() {
-
-
-    this.worldModelBinding = new ObjectBinding<BSPTree>() {
-      @Override
-      protected BSPTree computeValue() {
-        return worldModel;
-      }
-    };
-
-
-
 
     ChangeListener listener = (
         (observable, oldValue, newValue) -> {
@@ -143,16 +126,6 @@ public class PrimaryController {
     var treeNode = new TreeItem<>(new SceneNode(worldModel.getRoot()));
     sceneTreeView.setRoot(treeNode);
     buildTree(treeNode);
-
-    worldModelBinding.addListener(new ChangeListener<BSPTree>() {
-      @Override
-      public void changed(ObservableValue<? extends BSPTree> observableValue, BSPTree oldValue,
-          BSPTree newValue) {
-        var treeNode = new TreeItem<>(new SceneNode(newValue.getRoot()));
-        sceneTreeView.setRoot(treeNode);
-        buildTree(treeNode);
-      }
-    });
 
   }
 
